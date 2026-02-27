@@ -13,6 +13,7 @@ export const useVoting = () => {
     karyawanTerlucu: '',
     karyawanTerfavorit: '',
     karyawanTerrajin: '',
+    komentar: '',
   });
 
   const updateVote = (category, value) => {
@@ -30,6 +31,7 @@ export const useVoting = () => {
       karyawanTerlucu: '',
       karyawanTerfavorit: '',
       karyawanTerrajin: '',
+      komentar: '',
     });
   };
 

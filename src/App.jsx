@@ -53,7 +53,6 @@ function App() {
       const response = await axios.post(url, JSON.stringify({
         namaVoter: voter.name,
         ...votes,
-        komentar: '',
       }), {
         headers: {
           'Content-Type': 'text/plain;charset=utf-8',

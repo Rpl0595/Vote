@@ -1,8 +1,12 @@
 import React from 'react';
 
-// Fungsi untuk mendapatkan kandidat berdasarkan kategori, exclude voter
+// Fungsi untuk mendapatkan kandidat berdasarkan kategori
 const getCandidates = (employees, category, excludeName) => {
-  let filtered = employees.filter(emp => emp.nama !== excludeName);
+  // Untuk kategori tertentu, izinkan memilih diri sendiri (tidak di-exclude)
+  const isGeneralCategory = ['umum'].includes(category);
+  let filtered = isGeneralCategory 
+    ? employees 
+    : employees.filter(emp => emp.nama !== excludeName);
 
   switch (category) {
     case 'mua':
@@ -116,6 +120,25 @@ const Step2Voting = ({ employees, voter, votes, updateVote, onNext, onBack }) =>
             </div>
           );
         })}
+      </div>
+
+      {/* Input Komentar */}
+      <div className="mt-8 p-5 bg-slate-50 rounded-2xl border border-slate-200">
+        <label className="block text-sm font-bold text-slate-700 mb-3 flex items-center">
+          <svg className="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+          </svg>
+          Pesan / Komentar (Opsional)
+        </label>
+        <textarea
+          value={votes.komentar || ''}
+          onChange={(e) => updateVote('komentar', e.target.value)}
+          placeholder="Tuliskan pesan atau alasan Anda memilih..."
+          className="w-full h-32 p-4 bg-white border border-slate-200 rounded-xl text-sm text-slate-900 focus:ring-blue-500 focus:border-blue-500 transition-all shadow-sm"
+        />
+        <p className="mt-2 text-[11px] text-slate-400 italic text-right">
+          {votes.komentar?.length || 0} karakter
+        </p>
       </div>
 
       <div className="flex flex-col-reverse sm:flex-row justify-between gap-4 pt-6 border-t border-slate-100">

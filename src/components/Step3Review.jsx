@@ -36,13 +36,22 @@ const Step3Review = ({ voter, votes, onSubmit, onBack, loading }) => {
       </div>
 
       <div className="grid grid-cols-1 gap-3">
-        {Object.entries(votes).map(([key, value]) => (
-          <div key={key} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100 group hover:bg-white hover:border-blue-200 transition-all">
-            <span className="text-sm font-semibold text-slate-500 mb-1 sm:mb-0 uppercase tracking-tight">{categoryLabels[key]}</span>
-            <span className="text-base font-bold text-slate-900 group-hover:text-blue-600">{value || '-'}</span>
-          </div>
-        ))}
+        {Object.entries(votes)
+          .filter(([key]) => key !== 'komentar')
+          .map(([key, value]) => (
+            <div key={key} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100 group hover:bg-white hover:border-blue-200 transition-all">
+              <span className="text-sm font-semibold text-slate-500 mb-1 sm:mb-0 uppercase tracking-tight">{categoryLabels[key]}</span>
+              <span className="text-base font-bold text-slate-900 group-hover:text-blue-600">{value || '-'}</span>
+            </div>
+          ))}
       </div>
+
+      {votes.komentar && (
+        <div className="mt-4 p-5 bg-slate-50 rounded-2xl border border-slate-100 italic">
+          <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-2">Pesan Anda:</p>
+          <p className="text-sm text-slate-700 leading-relaxed">"{votes.komentar}"</p>
+        </div>
+      )}
 
       <div className="flex flex-col-reverse sm:flex-row justify-between gap-4 pt-6 border-t border-slate-100">
         <button
