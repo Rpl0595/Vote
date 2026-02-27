@@ -195,7 +195,7 @@ function App() {
         </div>
         
         <p className="text-center mt-8 text-slate-400 text-xs">
-          © 2026 SIp Group. All rights reserved.
+          © 2026 Sip Group. All rights reserved.
         </p>
       </div>
     </div>
