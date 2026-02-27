@@ -118,7 +118,7 @@ function App() {
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Kuesioner Karyawan</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Vote karyawan</h1>
           <p className="text-slate-600 text-sm sm:text-base">Berikan apresiasi terbaik untuk rekan kerja Anda</p>
         </div>
 
@@ -194,7 +194,7 @@ function App() {
         </div>
         
         <p className="text-center mt-8 text-slate-400 text-xs">
-          © 2026 Kuesioner Karyawan. All rights reserved.
+          © 2026 SIp Group. All rights reserved.
         </p>
       </div>
     </div>
