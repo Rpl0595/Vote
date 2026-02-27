@@ -6,6 +6,7 @@ import Step2Voting from './components/Step2Voting';
 import Step3Review from './components/Step3Review';
 import SuccessPage from './components/SuccessPage';
 
+// Main App Component for Vote karyawan
 function App() {
   const [employees, setEmployees] = useState([]);
   const [votedNames, setVotedNames] = useState([]);
