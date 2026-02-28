@@ -22,7 +22,7 @@ function App() {
   const fetchEmployees = async () => {
     try {
       // Prioritas: .env -> URL Langsung (untuk GitHub Pages)
-      const url = import.meta.env.VITE_GOOGLE_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbwYl9cr1DGiBVjTG2aK8OWGjyKFMzpHuVpEP2fPgUi_DI-3nNVffHaHv5Qq__FcIBck9g/exec';
+      const url = import.meta.env.VITE_GOOGLE_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbykDiUMyqGQcnQ-K4JGVZwznqnkzt-IIFyl9lfLOvxBzZwvtOyvCqmHj4bpoppr9mqe7g/exec';
       
       if (!url) {
         setError('URL Google Script belum diatur');
@@ -49,7 +49,7 @@ function App() {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const url = import.meta.env.VITE_GOOGLE_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbwYl9cr1DGiBVjTG2aK8OWGjyKFMzpHuVpEP2fPgUi_DI-3nNVffHaHv5Qq__FcIBck9g/exec';
+      const url = import.meta.env.VITE_GOOGLE_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbykDiUMyqGQcnQ-K4JGVZwznqnkzt-IIFyl9lfLOvxBzZwvtOyvCqmHj4bpoppr9mqe7g/exec';
       // Mengirim sebagai text/plain untuk menghindari CORS preflight dengan Google Apps Script
       const response = await axios.post(url, JSON.stringify({
         namaVoter: voter.name,
