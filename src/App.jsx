@@ -53,6 +53,7 @@ function App() {
       // Mengirim sebagai text/plain untuk menghindari CORS preflight dengan Google Apps Script
       const response = await axios.post(url, JSON.stringify({
         namaVoter: voter.name,
+        emailVoter: voter.email, // Menambahkan email voter
         ...votes,
       }), {
         headers: {

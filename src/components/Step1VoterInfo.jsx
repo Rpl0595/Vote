@@ -1,54 +1,38 @@
 import React from 'react';
 
 const Step1VoterInfo = ({ employees, votedNames = [], voter, setVoter, onNext }) => {
-  const handleVoterChange = (e) => {
-    const selectedName = e.target.value;
-    const selectedEmp = employees.find(emp => emp.nama === selectedName);
-    setVoter({
-      name: selectedName,
-      dept: selectedEmp ? selectedEmp.departemen : '',
-    });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setVoter(prev => ({ ...prev, [name]: value }));
   };
 
   const isVoted = (name) => votedNames.includes(name);
-  const canProceed = voter.name !== '' && !isVoted(voter.name);
+  const canProceed = voter.name.trim() !== '' && voter.email.trim() !== '' && !isVoted(voter.name);
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="border-b border-slate-100 pb-4">
         <h2 className="text-xl font-bold text-slate-800">Identitas Voter</h2>
-        <p className="text-sm text-slate-500 mt-1">Silakan pilih identitas Anda untuk melanjutkan.</p>
+        <p className="text-sm text-slate-500 mt-1">Silakan masukkan identitas Anda untuk melanjutkan.</p>
       </div>
 
       <div className="space-y-5">
         <div>
-          <label className="block text-sm font-semibold text-slate-700 mb-2">
+          <label htmlFor="voterName" className="block text-sm font-semibold text-slate-700 mb-2">
             Nama Lengkap
           </label>
-          <div className="relative">
-            <select
-              value={voter.name}
-              onChange={handleVoterChange}
-              className={`w-full appearance-none bg-slate-50 border text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block p-3.5 pr-10 transition-all hover:bg-white ${
-                isVoted(voter.name) ? 'border-amber-200 bg-amber-50' : 'border-slate-200'
-              }`}
-            >
-              <option value="">-- Pilih Nama --</option>
-              {employees.map(emp => {
-                const alreadyVoted = isVoted(emp.nama);
-                return (
-                  <option key={emp.id} value={emp.nama} disabled={alreadyVoted}>
-                    {emp.nama} {alreadyVoted ? ' (Sudah Vote ✓)' : ''}
-                  </option>
-                );
-              })}
-            </select>
-            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-400">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-          </div>
+          <input
+            id="voterName"
+            name="name"
+            type="text"
+            value={voter.name}
+            onChange={handleInputChange}
+            placeholder="Masukkan nama lengkap Anda"
+            className={`w-full appearance-none bg-slate-50 border text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block p-3.5 transition-all hover:bg-white ${
+              isVoted(voter.name) ? 'border-amber-200 bg-amber-50' : 'border-slate-200'
+            }`}
+            disabled={isVoted(voter.name)}
+          />
           {isVoted(voter.name) && (
             <div className="mt-2 p-3 bg-amber-50 border border-amber-100 rounded-lg flex items-center space-x-2 text-amber-700">
               <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -59,22 +43,44 @@ const Step1VoterInfo = ({ employees, votedNames = [], voter, setVoter, onNext })
           )}
         </div>
 
+        <div>
+          <label htmlFor="voterEmail" className="block text-sm font-semibold text-slate-700 mb-2">
+            Email
+          </label>
+          <input
+            id="voterEmail"
+            name="email"
+            type="email"
+            value={voter.email}
+            onChange={handleInputChange}
+            placeholder="Masukkan alamat email Anda"
+            className="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block p-3.5 transition-all hover:bg-white"
+          />
+        </div>
+
+        {/* Departemen dan Jabatan tidak lagi otomatis terisi dari dropdown */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-semibold text-slate-700 mb-2">
               Departemen
             </label>
-            <div className="bg-slate-50 border border-slate-100 text-slate-500 text-sm rounded-xl p-3.5 font-medium">
-              {voter.dept || '-'}
-            </div>
+            <input
+              type="text"
+              value={voter.dept}
+              readOnly
+              className="w-full bg-slate-50 border border-slate-100 text-slate-500 text-sm rounded-xl p-3.5 font-medium"
+            />
           </div>
           <div>
             <label className="block text-sm font-semibold text-slate-700 mb-2">
               Jabatan
             </label>
-            <div className="bg-slate-50 border border-slate-100 text-slate-500 text-sm rounded-xl p-3.5 font-medium">
-              {employees.find(e => e.nama === voter.name)?.designation || employees.find(e => e.nama === voter.name)?.jabatan || '-'}
-            </div>
+            <input
+              type="text"
+              value={employees.find(e => e.nama === voter.name)?.designation || '-'}
+              readOnly
+              className="w-full bg-slate-50 border border-slate-100 text-slate-500 text-sm rounded-xl p-3.5 font-medium"
+            />
           </div>
         </div>
       </div>

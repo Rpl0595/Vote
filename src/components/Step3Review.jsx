@@ -26,7 +26,7 @@ const Step3Review = ({ voter, votes, onSubmit, onBack, loading }) => {
           <div>
             <p className="text-xs text-blue-100 font-medium uppercase tracking-wider">Voter</p>
             <h3 className="text-lg font-bold">{voter.name}</h3>
-            <p className="text-xs text-blue-100">{voter.dept}</p>
+            <p className="text-xs text-blue-100">{voter.email}</p>
           </div>
         </div>
       </div>
