@@ -10,9 +10,9 @@ const getCandidates = (employees, category, excludeName) => {
 
   switch (category) {
     case 'karyawanTertampan':
-      return filtered.filter(emp => emp.designation?.toLowerCase().includes('pria'));
+      return filtered.filter(emp => emp.gender?.toLowerCase() === 'pria');
     case 'karyawanTercantik':
-      return filtered.filter(emp => emp.designation?.toLowerCase().includes('wanita'));
+      return filtered.filter(emp => emp.gender?.toLowerCase() === 'wanita');
     default: // umum dan kategori lainnya
       return filtered;
   }
