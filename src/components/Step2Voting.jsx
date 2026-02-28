@@ -9,38 +9,11 @@ const getCandidates = (employees, category, excludeName) => {
     : employees.filter(emp => emp.nama !== excludeName);
 
   switch (category) {
-    case 'mua':
-      return filtered.filter(emp =>
-        emp.designation?.toLowerCase().includes('make up') ||
-        (emp.departemen === 'MUA & Wardrobe' && emp.designation?.toLowerCase().includes('make up'))
-      );
-    case 'wardrobe':
-      return filtered.filter(emp =>
-        emp.designation?.toLowerCase().includes('wardrobe') ||
-        (emp.departemen === 'MUA & Wardrobe' && emp.designation?.toLowerCase().includes('wardrobe'))
-      );
-    case 'fotografer':
-      return filtered.filter(emp =>
-        emp.departemen === 'Photographer' ||
-        emp.designation?.toLowerCase().includes('photographer')
-      );
-    case 'editor':
-      return filtered.filter(emp =>
-        emp.departemen === 'Editor' ||
-        emp.designation?.toLowerCase().includes('editor')
-      );
-    case 'admin':
-      return filtered.filter(emp =>
-        emp.departemen === 'Admin' ||
-        emp.designation?.toLowerCase().includes('admin') ||
-        emp.designation?.toLowerCase().includes('receptionis')
-      );
-    case 'barista':
-      return filtered.filter(emp =>
-        emp.departemen === 'NOA' ||
-        emp.designation?.toLowerCase().includes('barista')
-      );
-    default: // umum
+    case 'karyawanTertampan':
+      return filtered.filter(emp => emp.designation?.toLowerCase().includes('pria'));
+    case 'karyawanTercantik':
+      return filtered.filter(emp => emp.designation?.toLowerCase().includes('wanita'));
+    default: // umum dan kategori lainnya
       return filtered;
   }
 };
