@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Step1VoterInfo = ({ employees, votedNames = [], voter, setVoter, onNext }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setVoter(prev => ({ ...prev, [name]: value }));
   };
+
+  useEffect(() => {
+    const selectedEmp = employees.find(emp => emp.nama === voter.name);
+    setVoter(prev => ({
+      ...prev,
+      dept: selectedEmp ? selectedEmp.departemen : '',
+    }));
+  }, [voter.name, employees, setVoter]);
 
   const isVoted = (name) => votedNames.includes(name);
   const canProceed = voter.name.trim() !== '' && voter.email.trim() !== '' && !isVoted(voter.name);
