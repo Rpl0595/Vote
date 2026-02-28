@@ -1,19 +1,27 @@
 import React from 'react';
 
 // Fungsi untuk mendapatkan kandidat berdasarkan kategori
-const getCandidates = (employees, category, excludeName) => {
-  // Untuk kategori tertentu, izinkan memilih diri sendiri (tidak di-exclude)
-  const isGeneralCategory = ['umum'].includes(category);
-  let filtered = isGeneralCategory 
-    ? employees 
-    : employees.filter(emp => emp.nama !== excludeName);
+const getCandidates = (employees, categoryKey, excludeName) => {
+  // Kategori yang mengizinkan voter memilih diri sendiri
+  const categoriesAllowingSelfVote = [
+    'karyawanTertampan',
+    'karyawanTercantik',
+    'karyawanTerKalcer',
+    'karyawanTersoftSpoken',
+    'mascotOfTim'
+  ];
+  const allowsSelfVote = categoriesAllowingSelfVote.includes(categoryKey);
 
-  switch (category) {
+  let filtered = allowsSelfVote
+    ? employees
+    : employees.filter(emp => emp.nama.toLowerCase() !== excludeName.toLowerCase());
+
+  switch (categoryKey) {
     case 'karyawanTertampan':
       return filtered.filter(emp => emp.gender?.toLowerCase() === 'pria');
     case 'karyawanTercantik':
       return filtered.filter(emp => emp.gender?.toLowerCase() === 'perempuan');
-    default: // umum dan kategori lainnya
+    default: // kategori lainnya
       return filtered;
   }
 };
