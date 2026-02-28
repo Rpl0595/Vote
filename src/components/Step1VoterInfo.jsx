@@ -7,7 +7,7 @@ const Step1VoterInfo = ({ employees, votedNames = [], voter, setVoter, onNext })
   };
 
   useEffect(() => {
-    const selectedEmp = employees.find(emp => emp.nama === voter.name);
+    const selectedEmp = employees.find(emp => emp.nama.toLowerCase() === voter.name.toLowerCase());
     setVoter(prev => ({
       ...prev,
       dept: selectedEmp ? selectedEmp.departemen : '',

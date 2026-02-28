@@ -38,7 +38,7 @@ const Step2Voting = ({ employees, voter, votes, updateVote, onNext, onBack }) =>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         {categories.map((cat, idx) => {
-          const candidates = getCandidates(employees, cat.type, voter.name);
+          const candidates = getCandidates(employees, cat.key, voter.name);
           const isSelected = votes[cat.key] !== '';
           
           return (
