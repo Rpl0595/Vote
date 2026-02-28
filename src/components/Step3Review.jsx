@@ -2,15 +2,11 @@ import React from 'react';
 
 const Step3Review = ({ voter, votes, onSubmit, onBack, loading }) => {
   const categoryLabels = {
-    muaTerfavorit: 'MUA Terfavorit',
-    wardrobeTerfavorit: 'Wardrobe Terfavorit',
-    fotograferTerfavorit: 'Fotografer Terfavorit',
-    editorTerfavorit: 'Editor Terfavorit',
-    adminTerfavorit: 'Admin Terfavorit',
-    baristaTerfavorit: 'Barista Terfavorit',
-    karyawanTerlucu: 'Karyawan Terlucu',
-    karyawanTerfavorit: 'Karyawan Terfavorit',
-    karyawanTerrajin: 'Karyawan Terrajin',
+    karyawanTertampan: 'Karyawan Tertampan',
+    karyawanTercantik: 'Karyawan Tercantik',
+    karyawanTerKalcer: 'Karyawan Ter Kalcer',
+    karyawanTersoftSpoken: 'Karyawan Tersoft Spoken',
+    mascotOfTim: 'Mascot Of Tim',
   };
 
   return (

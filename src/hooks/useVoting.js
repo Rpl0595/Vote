@@ -4,15 +4,11 @@ export const useVoting = () => {
   const [step, setStep] = useState(1);
   const [voter, setVoter] = useState({ name: '', dept: '' });
   const [votes, setVotes] = useState({
-    muaTerfavorit: '',
-    wardrobeTerfavorit: '',
-    fotograferTerfavorit: '',
-    editorTerfavorit: '',
-    adminTerfavorit: '',
-    baristaTerfavorit: '',
-    karyawanTerlucu: '',
-    karyawanTerfavorit: '',
-    karyawanTerrajin: '',
+    karyawanTertampan: '',
+    karyawanTercantik: '',
+    karyawanTerKalcer: '',
+    karyawanTersoftSpoken: '',
+    mascotOfTim: '',
     komentar: '',
   });
 
@@ -22,15 +18,11 @@ export const useVoting = () => {
 
   const resetVotes = () => {
     setVotes({
-      muaTerfavorit: '',
-      wardrobeTerfavorit: '',
-      fotograferTerfavorit: '',
-      editorTerfavorit: '',
-      adminTerfavorit: '',
-      baristaTerfavorit: '',
-      karyawanTerlucu: '',
-      karyawanTerfavorit: '',
-      karyawanTerrajin: '',
+      karyawanTertampan: '',
+      karyawanTercantik: '',
+      karyawanTerKalcer: '',
+      karyawanTersoftSpoken: '',
+      mascotOfTim: '',
       komentar: '',
     });
   };

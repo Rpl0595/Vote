@@ -47,15 +47,11 @@ const getCandidates = (employees, category, excludeName) => {
 
 const Step2Voting = ({ employees, voter, votes, updateVote, onNext, onBack }) => {
   const categories = [
-    { key: 'muaTerfavorit', label: 'MUA Terfavorit', type: 'mua' },
-    { key: 'wardrobeTerfavorit', label: 'Wardrobe Terfavorit', type: 'wardrobe' },
-    { key: 'fotograferTerfavorit', label: 'Fotografer Terfavorit', type: 'fotografer' },
-    { key: 'editorTerfavorit', label: 'Editor Terfavorit', type: 'editor' },
-    { key: 'adminTerfavorit', label: 'Admin Terfavorit', type: 'admin' },
-    { key: 'baristaTerfavorit', label: 'Barista Terfavorit', type: 'barista' },
-    { key: 'karyawanTerlucu', label: 'Karyawan Terlucu', type: 'umum' },
-    { key: 'karyawanTerfavorit', label: 'Karyawan Terfavorit', type: 'umum' },
-    { key: 'karyawanTerrajin', label: 'Karyawan Terrajin', type: 'umum' },
+    { key: 'karyawanTertampan', label: 'Karyawan Tertampan', type: 'umum' },
+    { key: 'karyawanTercantik', label: 'Karyawan Tercantik', type: 'umum' },
+    { key: 'karyawanTerKalcer', label: 'Karyawan Ter Kalcer', type: 'umum' },
+    { key: 'karyawanTersoftSpoken', label: 'Karyawan Tersoft Spoken', type: 'umum' },
+    { key: 'mascotOfTim', label: 'Mascot Of Tim', type: 'umum' },
   ];
 
   const allFilled = categories.every(cat => votes[cat.key] !== '');
