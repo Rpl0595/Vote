@@ -1,9 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Step1VoterInfo = ({ employees, votedNames = [], voter, setVoter, onNext }) => {
+  const [isEmailValid, setIsEmailValid] = useState(true);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setVoter(prev => ({ ...prev, [name]: value }));
+
+    if (name === 'email') {
+      // Regex sederhana untuk validasi email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      setIsEmailValid(emailRegex.test(value) || value === ''); // Izinkan kosong sementara
+    }
   };
 
   useEffect(() => {
@@ -15,7 +23,7 @@ const Step1VoterInfo = ({ employees, votedNames = [], voter, setVoter, onNext })
   }, [voter.name, employees, setVoter]);
 
   const isVoted = (name) => votedNames.includes(name);
-  const canProceed = voter.name.trim() !== '' && voter.email.trim() !== '' && !isVoted(voter.name);
+  const canProceed = voter.name.trim() !== '' && voter.email.trim() !== '' && isEmailValid && !isVoted(voter.name);
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -62,8 +70,13 @@ const Step1VoterInfo = ({ employees, votedNames = [], voter, setVoter, onNext })
             value={voter.email}
             onChange={handleInputChange}
             placeholder="Masukkan alamat email Anda"
-            className="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block p-3.5 transition-all hover:bg-white"
+            className={`w-full appearance-none bg-slate-50 border text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block p-3.5 transition-all hover:bg-white ${
+              isEmailValid ? 'border-slate-200' : 'border-red-300 bg-red-50'
+            }`}
           />
+          {!isEmailValid && (
+            <p className="mt-2 text-xs text-red-600">Format email tidak valid.</p>
+          )}
         </div>
 
         {/* Departemen dan Jabatan tidak lagi otomatis terisi dari dropdown */}
