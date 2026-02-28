@@ -98,7 +98,7 @@ const Step1VoterInfo = ({ employees, votedNames = [], voter, setVoter, onNext })
             </label>
             <input
               type="text"
-              value={employees.find(e => e.nama === voter.name)?.designation || '-'}
+              value={employees.find(e => e.nama.toLowerCase() === voter.name.toLowerCase())?.designation || '-'}
               readOnly
               className="w-full bg-slate-50 border border-slate-100 text-slate-500 text-sm rounded-xl p-3.5 font-medium"
             />
